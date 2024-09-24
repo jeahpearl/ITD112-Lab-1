@@ -1,38 +1,340 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: #f4f4f8;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between; /* Space between logo and title */
+  background-color: #0f3b74;
+  color: #ffffff;
+  padding: 10px 20px; /* Smaller padding */
+  width: 100%;
+}
+
+.App-header h1 {
+  font-size: 1.5rem; /* Reduce font size */
+  margin: 0;
+  margin-left: 10px;
+}
+
+.logo {
+  width: 50px; /* Adjust size of the logo */
+  height: 50px; /* Ensure it's proportional */
+}
+
+/*Header Tabs*/
+.header-tabs {
+  display: flex;
+  gap: 20px;
+  margin-left: 20px;
+}
+
+.tab {
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.tab.active {
+  background-color: #0f3b74;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.tab:hover {
+  background-color: rgb(3, 119, 187);
+}
+
+/*End of Header Tabs */
+
+/*Tab Styling*/
+.chart-tabs {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 20px;
+}
+
+.chart-tab {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #0f3b74;
+  color: white;
+  border-radius: 5px;
+}
+
+.chart-tab.active {
+  background-color: #004d70;
+  font-weight: bold;
+}
+
+.chart-tab:hover {
+  background-color: #0056b3;
+}
+
+/*End of Tab Styling*/
+
+.upload-section, .data-list-section {
+  background-color: #ffffff;
+  padding: 25px;
+  margin: 10px auto;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  width: 95%;
+  max-width: 960px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #dddddd;
+  text-align: left;
+  vertical-align: middle; /* Ensures content is vertically aligned */
+}
+
+th {
+  background-color: #0f3b74;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+tr:nth-child(even) {
+  background-color: #f8f9fa;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Button container for aligning Edit and Delete buttons side by side */
+.button-container {
+  display: flex;
+  justify-content: center; /* Center both buttons horizontally */
+  gap: 10px; /* Add some space between the buttons */
+}
+
+.data-list-button {
+  padding: 8px 16px;
+  margin: 0;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.data-list-button.edit {
+  background-color: #28a745; /* Green color for edit */
+}
+
+.data-list-button.delete {
+  background-color: #dc3545; /* Red color for delete */
+}
+
+.data-list-button.edit:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.data-list-button.delete:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.pagination-button {
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: none;
+  background-color: #0056b3;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: #0f3b74;
+}
+
+.pagination-button.active {
+  background-color: #0f3b74;
+}
+
+.page-info {
+  font-size: 1rem;
+  margin: 0 10px;
+}
+
+/* Search Input Styles */
+.search-input {
+  padding: 8px;
+  margin-top: 10px; /* Add margin to the top to create space */
+  margin-bottom: 10px;
+  width: 95%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Form Container */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+form input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(20% - 10px); /* Adjust to fit multiple fields */
+  box-sizing: border-box;
+}
+
+/* Style the Add Data button */
+form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  border-radius: 4px;
+}
+
+form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* CSV Upload Section */
+/* Style the custom Choose File button */
+.custom-file-upload {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.2s;
+  display: inline-block;
+}
+
+.custom-file-upload:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Style the Save to Database button */
+.upload-container button {
+  background-color: #214e88 ;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.upload-container button:hover {
+  background-color:#402188;
+  transform: scale(1.05);
+}
+
+/* If button is disabled (e.g. loading), apply styles */
+.upload-container button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Modal styling */
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  margin: auto;
+}
+
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal input field styling */
+.modal input {
+  width: calc(100% - 20px); /* Adjust input width to fit modal */
+  padding: 8px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Button styling inside the modal */
+.modal button {
+  width: auto; /* Keep buttons to their default size */
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Add styles for charts section */
+.charts-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  width: 95%;
+  max-width: 960px;
+  margin: auto;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filters label, .filters select {
+  margin-right: 10px;
+  padding: 5px;
 }
